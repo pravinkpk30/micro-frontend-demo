@@ -8,7 +8,7 @@ The system consists of three independent applications:
 
 ### 1. Host Application (`host`) - Port 3000
 
-- **Role**: The container application (Host/Parent).
+- **Role**: The container application (Shell).
 - **Function**: It acts as the main dashboard, integrating features from the other micro-frontends.
 - **Features**:
   - Global Navigation (Sidebar).
@@ -18,7 +18,7 @@ The system consists of three independent applications:
 
 ### 2. Product Catalog (`child-components`) - Port 3001
 
-- **Role**: Remote Application (Child/Component).
+- **Role**: Remote Application (Micro-frontend).
 - **Function**: Manages the display of pharmaceutical products.
 - **Exposes**: `ProductList` component.
 - **Features**:
@@ -28,7 +28,7 @@ The system consists of three independent applications:
 
 ### 3. Inventory Manager (`child-todolist`) - Port 3002
 
-- **Role**: Remote Application (Child/Component).
+- **Role**: Remote Application (Micro-frontend).
 - **Function**: Manages the drug inventory system (CRUD).
 - **Exposes**: `DrugManager` component.
 - **Features**:
