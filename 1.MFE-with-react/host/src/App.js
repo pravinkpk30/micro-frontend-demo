@@ -5,6 +5,7 @@ const RemoteProductList = React.lazy(() => import('childComponents/ProductList')
 const RemoteDrugManager = React.lazy(() => import('childTodolist/DrugManager'));
 import VueInventory from './VueInventory';
 import UserProfile from './UserProfile';
+import AngularOrder from './AngularOrder';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -89,6 +90,12 @@ const App = () => {
             >
               Global Inventory (Vue)
             </li>
+            <li 
+              style={{ padding: '10px', cursor: 'pointer', backgroundColor: activeTab === 'orders' ? '#34495e' : 'transparent', borderRadius: '4px', marginBottom: '5px' }}
+              onClick={() => setActiveTab('orders')}
+            >
+              Order Management (Angular)
+            </li>
           </ul>
         </nav>
 
@@ -131,6 +138,12 @@ const App = () => {
                     <div>
                         <h3>Global Drug Inventory (Vue MFE)</h3>
                         <VueInventory />
+                    </div>
+                )}
+
+                {activeTab === 'orders' && (
+                    <div>
+                        <AngularOrder />
                     </div>
                 )}
             </Suspense>

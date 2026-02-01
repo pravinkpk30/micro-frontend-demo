@@ -1,0 +1,33 @@
+{
+  "name": "child-angular-product-catalog",
+  "version": "1.0.0",
+  "main": "main.ts",
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "dependencies": {
+    "@angular/animations": "^16.1.0",
+    "@angular/common": "^16.1.0",
+    "@angular/compiler": "^16.1.0",
+    "@angular/core": "^16.1.0",
+    "@angular/forms": "^16.1.0",
+    "@angular/platform-browser": "^16.1.0",
+    "@angular/platform-browser-dynamic": "^16.1.0",
+    "@angular/router": "^16.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.13.0"
+  },
+  "devDependencies": {
+    "@angular/cli": "~16.1.0",
+    "@angular/compiler-cli": "^16.1.0",
+    "@types/node": "^12.11.1",
+    "html-webpack-plugin": "^5.5.0",
+    "ts-loader": "^9.4.0",
+    "typescript": "~5.0.0",
+    "webpack": "^5.76.0",
+    "webpack-cli": "^5.0.0",
+    "webpack-dev-server": "^4.11.0"
+  }
+}

@@ -1,10 +1,10 @@
 # Micro-Frontend Pharmacy Management System
 
-This project demonstrates a Micro-Frontend architecture using **React**, **Vue.js**, **Vanilla JS**, and **Webpack 5 Module Federation**. It simulates a Pharmacy Management System composed of five separate applications (Host + 4 Remotes) working together seamlessly.
+This project demonstrates a Micro-Frontend architecture using **React**, **Vue.js**, **Angular**, **Vanilla JS**, and **Webpack 5 Module Federation**. It simulates a Pharmacy Management System composed of six separate applications (Host + 5 Remotes) working together seamlessly.
 
 ## 🏗 Architecture
 
-The system consists of five independent applications:
+The system consists of six independent applications:
 
 ### 1. Host Application (`host`) - Port 3000
 
@@ -57,11 +57,22 @@ The system consists of five independent applications:
   - Interactive DOM manipulation.
 - **Tech**: Vanilla JS, Webpack 5.
 
+### 6. Order Management (`child-angular-product-catalog`) - Port 3005
+
+- **Role**: Remote Application (Micro-frontend).
+- **Function**: Manages Order Creation, Drug Dosage configuration, and Order Listing.
+- **Exposes**: `OrderModule` and `mount` function (Standalone Component).
+- **Features**:
+  - Angular 16+ Standalone Components.
+  - Complex Form handling (Template-driven).
+  - Dynamic Table with Nested Lists.
+- **Tech**: Angular 16+, Webpack 5.
+
 ---
 
 ## 🚀 Getting Started
 
-To run the entire system, you need to start all five applications simultaneously.
+To run the entire system, you need to start all six applications simultaneously.
 
 ### Prerequisites
 
@@ -92,11 +103,15 @@ npm install
 # Install dependencies for Child Vanilla JS
 cd ../child-vannilajs
 npm install
+
+# Install dependencies for Child Angular App
+cd ../child-angular-product-catalog
+npm install
 ```
 
 ### Running the Applications
 
-Open **five** separate terminal windows and run the following commands:
+Open **six** separate terminal windows and run the following commands:
 
 **Terminal 1: Product Catalog (Port 3001)**
 
@@ -126,7 +141,14 @@ cd child-vannilajs
 npm start
 ```
 
-**Terminal 5: Host Application (Port 3000)**
+**Terminal 5: Order Management (Port 3005)**
+
+```bash
+cd child-angular-product-catalog
+npm start
+```
+
+**Terminal 6: Host Application (Port 3000)**
 
 ```bash
 cd host
@@ -150,6 +172,7 @@ Each Micro-Frontend exposes a special file called `remoteEntry.js`. This file is
 | **Inventory Manager** | [http://localhost:3002/remoteEntry.js](http://localhost:3002/remoteEntry.js) | Validates that `DrugManager` is exposed as defined in Webpack config. |
 | **Global Inventory**  | [http://localhost:3003/remoteEntry.js](http://localhost:3003/remoteEntry.js) | Validates that `childVueapp` is exposed (Vue 3 App).                  |
 | **User Profile**      | [http://localhost:3004/remoteEntry.js](http://localhost:3004/remoteEntry.js) | Validates that `childVannila` is exposed (Vanilla JS).                |
+| **Order Management**  | [http://localhost:3005/remoteEntry.js](http://localhost:3005/remoteEntry.js) | Validates that `childAngular` is exposed (Angular 16+).               |
 
 **How to interpret:**
 When you open these URLs, you should see a JavaScript file content. This confirms that:
@@ -170,7 +193,7 @@ The project uses a unified **Medical Teal & Gray** theme consisting of:
 
 ## 🛠 Technology Stack
 
-- **Core**: React 18, Vue 3, Vanilla JS
+- **Core**: React 18, Vue 3, Angular 16+, Vanilla JS
 - **Bundler**: Webpack 5
 - **Architecture**: Module Federation
 - **Transpiler**: Babel
