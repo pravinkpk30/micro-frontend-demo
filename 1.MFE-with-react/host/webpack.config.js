@@ -32,6 +32,7 @@ module.exports = {
       remotes: {
         childComponents: 'childComponents@http://localhost:3001/remoteEntry.js',
         childTodolist: 'childTodolist@http://localhost:3002/remoteEntry.js',
+        childVueapp: 'childVueapp@http://localhost:3003/remoteEntry.js',
       },
       shared: {
         ...deps,

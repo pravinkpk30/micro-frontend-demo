@@ -1,10 +1,10 @@
 # Micro-Frontend Pharmacy Management System
 
-This project demonstrates a Micro-Frontend architecture using **React** and **Webpack 5 Module Federation**. It simulates a Pharmacy Management System composed of three separate applications working together seamlessly.
+This project demonstrates a Micro-Frontend architecture using **React**, **Vue.js**, and **Webpack 5 Module Federation**. It simulates a Pharmacy Management System composed of four separate applications (Host + 3 Remotes) working together seamlessly.
 
 ## 🏗 Architecture
 
-The system consists of three independent applications:
+The system consists of four independent applications:
 
 ### 1. Host Application (`host`) - Port 3000
 
@@ -36,11 +36,21 @@ The system consists of three independent applications:
   - State management using React Hooks.
 - **Tech**: React, Webpack 5.
 
+### 4. Global Inventory (`child-vueapp`) - Port 3003
+
+- **Role**: Remote Application (Micro-frontend).
+- **Function**: Provides a global read-only view of drug inventory with stock status.
+- **Exposes**: `InventoryList` and `mount` function (for React integration).
+- **Features**:
+  - Vue 3 Component inside React Host.
+  - Reactive Inventory Table.
+- **Tech**: Vue 3, Webpack 5.
+
 ---
 
 ## 🚀 Getting Started
 
-To run the entire system, you need to start all three applications simultaneously.
+To run the entire system, you need to start all four applications simultaneously.
 
 ### Prerequisites
 
@@ -63,11 +73,15 @@ npm install
 # Install dependencies for Child TodoList
 cd ../child-todolist
 npm install
+
+# Install dependencies for Child Vue App
+cd ../child-vueapp
+npm install
 ```
 
 ### Running the Applications
 
-Open **three** separate terminal windows and run the following commands:
+Open **four** separate terminal windows and run the following commands:
 
 **Terminal 1: Product Catalog (Port 3001)**
 
@@ -83,7 +97,7 @@ cd child-todolist
 npm start
 ```
 
-**Terminal 3: Host Application (Port 3000)**
+**Terminal 4: Host Application (Port 3000)**
 
 ```bash
 cd host
@@ -97,6 +111,25 @@ Once all servers are running, open your browser and navigate to:
 
 ---
 
+## ✅ Validating Remote Entries (Module Federation)
+
+Each Micro-Frontend exposes a special file called `remoteEntry.js`. This file is the entry point that the Host application uses to load the remote components. You can access these files directly in the browser to verify that the Micro-Frontends are running and exposing modules correctly.
+
+| Application           | URL                                                                          | Purpose                                                               |
+| :-------------------- | :--------------------------------------------------------------------------- | :-------------------------------------------------------------------- |
+| **Product Catalog**   | [http://localhost:3001/remoteEntry.js](http://localhost:3001/remoteEntry.js) | Validates that `ProductList` is exposed as defined in Webpack config. |
+| **Inventory Manager** | [http://localhost:3002/remoteEntry.js](http://localhost:3002/remoteEntry.js) | Validates that `DrugManager` is exposed as defined in Webpack config. |
+| **Global Inventory**  | [http://localhost:3003/remoteEntry.js](http://localhost:3003/remoteEntry.js) | Validates that `childVueapp` is exposed (Vue 3 App).                  |
+
+**How to interpret:**
+When you open these URLs, you should see a JavaScript file content. This confirms that:
+
+1. The Micro-Frontend is running.
+2. The `ModuleFederationPlugin` is correctly configured.
+3. The `filename: 'remoteEntry.js'` is properly set.
+
+---
+
 ## 🎨 Theme & Design
 
 The project uses a unified **Medical Teal & Gray** theme consisting of:
@@ -107,7 +140,7 @@ The project uses a unified **Medical Teal & Gray** theme consisting of:
 
 ## 🛠 Technology Stack
 
-- **Core**: React 18
+- **Core**: React 18, Vue 3
 - **Bundler**: Webpack 5
 - **Architecture**: Module Federation
 - **Transpiler**: Babel

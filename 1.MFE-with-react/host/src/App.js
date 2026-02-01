@@ -3,6 +3,7 @@ import './styles.css';
 
 const RemoteProductList = React.lazy(() => import('childComponents/ProductList'));
 const RemoteDrugManager = React.lazy(() => import('childTodolist/DrugManager'));
+import VueInventory from './VueInventory';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -35,6 +36,12 @@ const App = () => {
               onClick={() => setActiveTab('inventory')}
             >
               Manage Inventory
+            </li>
+            <li 
+              style={{ padding: '10px', cursor: 'pointer', backgroundColor: activeTab === 'vue-inventory' ? '#34495e' : 'transparent', borderRadius: '4px', marginBottom: '5px' }}
+              onClick={() => setActiveTab('vue-inventory')}
+            >
+              Global Inventory (Vue)
             </li>
           </ul>
         </nav>
@@ -71,6 +78,13 @@ const App = () => {
                     <div>
                         <h3>Inventory Management</h3>
                         <RemoteDrugManager />
+                    </div>
+                )}
+
+                {activeTab === 'vue-inventory' && (
+                    <div>
+                        <h3>Global Drug Inventory (Vue MFE)</h3>
+                        <VueInventory />
                     </div>
                 )}
             </Suspense>
