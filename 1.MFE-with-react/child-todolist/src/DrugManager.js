@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import './styles.css';
 
-const DrugManager = () => {
-  const [drugs, setDrugs] = useState([
-    { id: 1, name: 'Ibuprofen 200mg' },
-    { id: 2, name: 'Paracetamol 500mg' }
-  ]);
+/**
+ * DrugManager Component
+ * 
+ * This component receives initial drugs data as a prop from the parent/host application
+ * to demonstrate parent-to-child communication in micro-frontend architecture.
+ * 
+ * @param {Object} props
+ * @param {Array} props.initialDrugs - Array of initial drug objects
+ *   Each drug should have: { id, name }
+ * @param {string} props.title - Title to display as the component heading
+ */
+const DrugManager = ({ initialDrugs = [], title = 'Drug Inventory Manager' }) => {
+  const [drugs, setDrugs] = useState(initialDrugs);
   const [input, setInput] = useState('');
   const [editId, setEditId] = useState(null);
 
@@ -32,7 +40,7 @@ const DrugManager = () => {
 
   return (
     <div className="card" style={{ maxWidth: '600px', margin: '20px auto' }}>
-      <h3>Drug Inventory Manager</h3>
+      <h3>{title}</h3>
       <div style={{ display: 'flex', marginBottom: '20px' }}>
         <input 
           value={input} 
